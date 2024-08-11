@@ -1,7 +1,0 @@
-- hosts: all
-  become: yes
-  tasks:
-    - name: install http
-      yum: name=httpd state=started
-    - name: start HTTPD
-      systemd: name=httpd state=started
