@@ -39,29 +39,3 @@
   - name: restart  nfs-server to keep all the modification
     service: name=nfs-server  state=restarted
 
-
-# how to configure nfs on client1 machine
-
-- hosts: client1
-  become: yes
-  tasks:
-
-
-  - name: install nfs-utils on client machine
-    yum: name=nfs-utils state=present
-
-  - name: Start and enable nfs-server
-    service: name=nfs-server state=started enabled=yes
-
-  - name: verify that client machine can see the share directory
-    shell: sudo showmount -e server
-
-
-  - name:  Create the mount point where nfs-share directory will be mounted
-    ansible.builtin.file: path=/nfs-client state=directory
-
-  - name: Add the mount point in fstable with nfs file system to make it permanent
-    mount: path=/nfs-client src=192.168.40.60:/nfs-share fstype=nfs state=present
-
-  - name: Mount the mount point
-    shell: sudo  mount -a
