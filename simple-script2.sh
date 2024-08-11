@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo " I alreade know how to use GITHUB"
+echo " I alreade know how to use GITHUB easily" 
